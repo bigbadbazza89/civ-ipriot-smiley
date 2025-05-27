@@ -202,22 +202,22 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
 1. Does the code's author believe that every `Smiley` should be able to blink? Explain.
 
 > Your answer here
-> 
+> No. as the blink() method is defined in the class Blinkable, the author would use this as encapsulation to ensure any subclasses that should blink, would have to inherit from this superclass. There is no blink() defined in the superclass Smiley and therefore any instances of this won't inherit the ability to blink if calling with super().
 
 2. For those smileys that blink, does the author expect them to blink in the same way? Explain.
 
 > Your answer here
->
+> Not necessarily. It would depend on what argument is passed when defining blink in the instance called from the class Smiley and Blinkable. This could be a shorter time delay for instance.
 
 3. Referring to the implementation of blink in the Happy and Sad Smiley classes, give a brief explanation of what polymorphism is.
 
 > Your answer here
->
+> Polymorphism can be identified in this, as since Blinkable defines a generic blink() method across all subclasses. The subclasses can define their own versions of this method so that they are each unique in how it can be displayed.
 
 4. How is inheritance used in the blink method, and why is it important for polymorphism?
 
 > Your answer here
->
+> The class Happy passes itself with the Smiley and Blinkable parameters and since it defines itself by calling the super() function, inherits all methods from its super classes. This would include the blink() method from blinkable. This is important for polymorphism, as it allows the subclasses to define variations whilst maintaining a consistent basis for what the method does.
 1. **Implement Blink in Sad Class:**
 
    - Create a new method called `blink` within the Sad class. Ensure you use the same method signature as in the Happy class:
@@ -240,6 +240,7 @@ Include a screenshot of the sad smiley or the modified `main.py`:
 - Observe and document the Sad smiley as it blinks its eyes. Describe any adjustments or issues encountered during implementation.
 
   > Your answer here
+  > An issue I had was needing to import time into the sad.py in order for the delay parameter to be usable. I also increased the delay from 0.25 to 3 which meant the eyes blinked close for longer which I felt better expressed a sad face.
 
   ### 2.8. If It Walks Like a Duck…
 
@@ -248,22 +249,27 @@ Include a screenshot of the sad smiley or the modified `main.py`:
   1. **Class Type Analysis:** What kind of class is `Blinkable`? Inspect its superclass for clues about its classification.
 
      > Your answer here
+  > An abstract class (ABC).
 
   2. **Class Implementation:** `Blinkable` is a class intended to be implemented by other classes. What generic term describes this kind of class, which is designed for implementation by others? **Clue**: Notice the lack of any concrete implementation and the naming convention.
 
   > Your answer here
+  > A parent/base or super class.
 
   3. **OO Principle Identification:** Regarding your answer to question (2), which Object-Oriented (OO) principle does this represent? Choose from the following and justify your answer in 1-2 sentences: Abstraction, Polymorphism, Inheritance, Encapsulation.
 
   > Your answer here
+  > Inheritance. As Blinkable is implemented as a base class, and is intended to be used by subclasses that would inherit attributes from this.
 
   4. **Implementation Flexibility:** Explain why you could grant the Sad Smiley a blinking feature similar to the Happy Smiley's implementation, even without directly using `Blinkable`.
 
   > Your answer here
+  > You can still define a blink() method within the Sad class that passes the same arguments and has the same variables as Happy, it just means that without using Blinkable, you lose the benefits of the encapsulation of shared attributes from the blink() method defined in the Blinkable(ABC).
 
   5. **Concept and Language Specificity:** In relation to your response to question (4), what is this capability known as, and why is it feasible in Python and many other dynamically typed languages but not in most statically typed programming languages like C#? **Clue** This concept is hinted at in the title of this section.
 
   > Your answer here
+  > This can be identified as encapsulation. It is feasible in Python as you do not need to explicitly declare object types, and as long as the object operates in the way that it should, can still be considered encapsulated.
 
   ***
 
@@ -277,18 +283,25 @@ Include a screenshot of the sad smiley or the modified `main.py`:
 
      1. Which colors are defined and in which class(s)?
         > Your answer here
+> Defined in class Smiley: WHITE, GREEN, RED, YELLOW, BLANK
+
      2. What type of variables hold these colors? Are the values expected to change during the program's execution? Explain your answer.
         > Your answer here
+> Tuples. Tuples are immutable and therefore cannot be changed outside of the variable definition.
+
      3. Add the color blue to the appropriate class using the appropriate format and values.
+> Done.
 
   2. **Usage of Color Variables:**
 
      1. In which classes are the color variables used?
         > Your answer here
+> Smiley, Happy, Sad
 
   3. **Simple Method to Change Colors:**
   4. What is the easiest way you can think to change the smileys to green? Easiest, not necessarily the best!
      > Your answer here
+> Creating a variable G = self.Green in class Smiley. Then replace the self.pixels list with G instead of Y.
 
   Here's a revised version of the "Flexible Colors – Step 1" section for the smiley project, incorporating your specifications for formatting and content updates:
 
@@ -318,7 +331,7 @@ Include a screenshot of the sad smiley or the modified `main.py`:
 
   4. **Bulk rename:** We want to update our grid to use the value of complexion, but we have so many `Y`'s in the grid. Use your IDE's refactoring tool to rename all instances of the **symbol** `Y` to `X`. Where `X` is the value of the `complexion` variable. Include a screenshot evidencing you have found the correct refactor tool and the changes made.
 
-  ![Bulk Rename](screenshots/bulk_rename.png)
+![Bulk Rename](screenshots/bulk_rename.png)
 
   5. **Update the `complexion` method:** Adjust this method to return `self.my_complexion`, ensuring that whatever color is assigned during instantiation is what the smiley displays.
 
